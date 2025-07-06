@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="output.css" />
+  </head>
+  <body
+    class="h-screen pt-10 bg-gradient-to-br flex justify-center items-start from-sky-300 to-blue-800"
+  >
+    <div
+      class="container w-[400px] font-serif bg-green-950 text-white grid place-items-center border-2 rounded-xl h-[450px]"
+    >
+      <p class="pt-5 text-3xl animate-pulse">Currency Converter</p>
+      <div
+        class="amount flex flex-col items-center text-xl space-y-11 mt-5 p-2 h-[350px]"
+      >
+        <input placeholder="Enter amount"/>
+        <div class="selection flex gap-x-20">
+          <div class="from">
+            <p>From:</p>
+            <img src="https://flagsapi.com/US/flat/32.png" />
+            <select name="from" class="bg-black text-white px-2 py-1 rounded"></select>
+          </div>
+          <div class="to">
+            <p>To:</p>
+            <img src="https://flagsapi.com/IN/flat/32.png" />
+            <select name="to" class="bg-black text-white px-2 py-1 rounded"></select>
+          </div>
+        </div>
+        <div class="result">1 USD = 80 rupees</div>
+        <button
+          class="rslt border rounded-full p-2 bg-yellow-500 hover:brightness-50"
+        >
+          Get exchange amount
+        </button>
+      </div>
+    </div>
+    <script src="codes.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
