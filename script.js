@@ -1,4 +1,4 @@
-const URL="https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/eur.json"
+const BASE_URL="https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/"
 const dropdowns=document.querySelectorAll(".selection select");
 const btn=document.querySelector(".rslt");
 
@@ -31,8 +31,33 @@ btn.addEventListener("click",(evt)=>{
     evt.preventDefault();
     let amount=document.querySelector(".amount input");
     let amountValue=amount.value;
-    console.log(amountValue);
     if(amountValue==="" || amountValue<1){
         amount.value="1"
     }
+    exchange();
 })
+
+function exchange(){
+    const from = document.querySelector(".from select").value.toLowerCase();
+    const to = document.querySelector(".to select").value.toLowerCase();
+    const url=`${BASE_URL}${from}.json`;
+
+    fetch(url)
+        .then((response)=>{
+            if(!response.ok){
+                throw new Error("Network response is not ok");
+            }
+            return response.json();
+        })
+        .then((data)=>{
+            const rate=data[from][to];
+            let amount=document.querySelector(".amount input").value;
+            let result=(amount*rate).toFixed(2);
+            const resultDiv=document.querySelector(".result");
+            resultDiv.innerText=`${amount} ${from.toUpperCase()} = ${result} ${to.toUpperCase()}`;
+        })
+        .catch((error)=>{
+            console.error("Error fetching exchange rate");
+            document.querySelector(".result").innerText="Error can't fetch exchange rate";
+        });
+}
